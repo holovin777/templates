@@ -1,3 +1,4 @@
+{% load staticfiles %}
 {% load i18n %}
 <footer class="footer container-fluid">
     {% block footer %}
@@ -22,7 +23,13 @@
           </a>
 	  {% endcomment %}
 	  <br><br>
-	  <p class="text-muted">Copyright © 2019 <a class="" href="/">holovin.com</a></p>
+<div class="text-center text-secondary">
+Copyright © 2020
+<a class="" href="/home">
+  <img src="{% static 'logowhite.svg' %}" height="27" class="d-inline-block align-top" alt="">
+    holovin.com
+</a>
+</div>
 	</div>
     {% endblock %}
 </footer>
