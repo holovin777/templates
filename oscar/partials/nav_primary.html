@@ -1,0 +1,51 @@
+{% load currency_filters %}
+{% load category_tags %}
+{% load i18n %}
+
+<div class="container-fluid">
+            {% block nav_dropdown %}
+	    <!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal2">
+  {% trans "Browse store" %}
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2"> Testing </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+              <div>
+                            {% category_tree depth=2 as tree_categories %}
+			    <a type="button" class="btn btn-secondary btn-lg btn-block" href="{% url 'catalogue:index' %}">{% trans "All products" %}</a>
+                            {% if tree_categories %}
+                                {% for tree_category in tree_categories %}
+                                    {% if tree_category.has_children %}
+  <a type="button" class="btn btn-secondary btn-lg btn-block" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
+                                    {% endif %}
+				    {% for close in tree_category.num_to_close %}
+                                                </ul></li>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                            {% block nav_dropdown_extra_items %}
+                                <a type="button" class="btn btn-secondary" href="{% url 'offer:list' %}">{% trans "Offers" %}</a></li>
+			    {% endblock %}
+              </div>
+      </div>
+      <div class="modal-footer">
+                     {% block nav_extra %}
+                     {% endblock %}
+		     {% include "oscar/partials/search.html" %}
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+            {% endblock %}
+</div>
