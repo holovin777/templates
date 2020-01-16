@@ -16,7 +16,7 @@
         {# Additional CSS - specific to certain pages #}
         {% block extrastyles %}{% endblock %}
         <title>{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}</title>
-
+  <script src="https://kit.fontawesome.com/879de1f7c5.js" crossorigin="anonymous"></script>
         {% block tracking %}
             {# Default to using Google analytics #}
             {% include "oscar/partials/google_analytics.html" %}
@@ -26,7 +26,6 @@
     <body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %} text-white" style="background-color: #000000;">
         {# Main content goes in this 'layout' block #}
         {% block layout %}{% endblock %}
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

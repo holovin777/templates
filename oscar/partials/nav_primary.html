@@ -1,18 +1,23 @@
 {% load currency_filters %}
 {% load category_tags %}
 {% load i18n %}
-
+{% load image_tags %}
     {% block nav_dropdown %}
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal2">
-                {% trans "Browse store" %}
+            <button type="button" class="btn text-white" data-toggle="modal" data-target="#exampleModal2">
+		    {% if category.image %}
+		        {% oscar_thumbnail category.image "32x32" crop="center" as thumb %}
+			<img src="{{ thumb.url }}" alt="{{ category.name }}" class="rounded"> {{ category.name }}
+                    {% else %}
+                        {% trans "Store" %}
+		    {% endif %}
             </button>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content bg-dark">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel2">{% trans "Browse store" %}</h5>
+			    <h5 class="modal-title" id="exampleModalLabel2">{% trans "Browse store" %}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
