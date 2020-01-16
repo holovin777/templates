@@ -5,7 +5,7 @@
     {% block nav_dropdown %}
             <!-- Button trigger modal -->
             <button type="button" class="btn text-white" data-toggle="modal" data-target="#exampleModal2">
-		    <h3>
+              <h3>
 	        {% if category %}
 		    {% if category.image %}
 		        {% oscar_thumbnail category.image "42x42" crop="center" as thumb %}
@@ -13,15 +13,15 @@
 		    {% else %}
 		        {{ category.name }}
 		    {% endif %}
-		        <h6 class="">
-        {% if user.is_staff %}
-            <a href="{% url 'dashboard:catalogue-category-update' pk=category.id %}"><small>{% trans "Edit this category" %}</small></a>
-        {% endif %}
-    </h6>
-                {% else %}
-                    {% trans "Store" %}
+		        <h6 class="text-right">
+                            {% if user.is_staff %}
+                                <a href="{% url 'dashboard:catalogue-category-update' pk=category.id %}"><small>{% trans "Edit this category" %}</small></a>
+                            {% endif %}
+                        </h6>
+                    {% else %}
+                        {% trans "Store" %}
 		{% endif %}
-		    <h3>
+              </h3>
             </button>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -38,22 +38,56 @@
                         {% include "oscar/partials/search.html" %}
                     </div>
                     <div class="modal-body">
-                        <div>
-                            {% category_tree depth=2 as tree_categories %}
-                                <a type="button" class="btn btn-outline-primary btn-lg btn-block" href="{% url 'catalogue:index' %}">{% trans "All products" %}</a>
-                                {% if tree_categories %}
+                        {% category_tree as tree_categories %}
+                        {% if tree_categories %}
+                            <h6 class="text-left">{% trans "Show results for" %}</h6>
+                            <div class="">
+				<ul>
                                     {% for tree_category in tree_categories %}
-                                        {% if tree_category.has_children %}
-                                            <a type="button" class="btn btn-outline-primary btn-lg btn-block" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-                                        {% endif %}
-				        {% for close in tree_category.num_to_close %}
-                                        {% endfor %}
+				        <li>
+					    <a type="button" class="btn btn-lg btn-block text-left text-white" href="{{ tree_category.url }}">
+						{% if tree_category.image %}
+						    {% oscar_thumbnail tree_category.image "32x32" crop="center" as thumb %}
+		 	                            <img src="{{ thumb.url }}" alt="{{ tree_category.name }}" class="rounded">
+                                                        {% if tree_category.pk == category.pk %}
+                                                            <strong>{{ tree_category.name }}</strong>
+                                                        {% else %}
+                                                            {{ tree_category.name }}
+                                                        {% endif %}
+					        {% else %}
+						        {% if tree_category.pk == category.pk %}
+                                                            <strong>{{ tree_category.name }}</strong>
+                                                        {% else %}
+                                                            {{ tree_category.name }}
+                                                        {% endif %}
+					        {% endif %}
+                                            </a>
+					    {% if tree_category.has_children %}
+					        <ul>
+				            {% else %}
+					</li>
+					    {% endif %}
+                                            {% for n in tree_category.num_to_close %}
+                                                </ul>
+					</li>
+                                            {% endfor %}
                                     {% endfor %}
-                                {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
                                 {% block nav_dropdown_extra_items %}
-                                    <a type="button" class="btn btn-outline-primary btn-block" href="{% url 'offer:list' %}">{% trans "Offers" %}</a></li>
+                                    <a type="button" class="btn btn-outline-light btn-block" href="{% url 'offer:list' %}">{% trans "Offers" %}</a></li>    
+			            {% if has_facets %}
+                                        <h4>{% trans "Refine by" %}</h4>
+                                        <div class="">
+                                            {% for field, data in facet_data.items %}
+                                                {% if data.results %}
+                                                    {% include 'oscar/search/partials/facet.html' with name=data.name items=data.results %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
 			        {% endblock %}
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
