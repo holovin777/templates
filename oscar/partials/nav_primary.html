@@ -4,14 +4,23 @@
 {% load image_tags %}
     {% block nav_dropdown %}
             <!-- Button trigger modal -->
-            <button type="button btn-lg" class="btn text-white" data-toggle="modal" data-target="#exampleModal2">
+            <button type="button" class="btn text-white" data-toggle="modal" data-target="#exampleModal2">
 		    <h3>
+	        {% if category %}
 		    {% if category.image %}
 		        {% oscar_thumbnail category.image "42x42" crop="center" as thumb %}
 			<img src="{{ thumb.url }}" alt="{{ category.name }}" class="rounded"> {{ category.name }}
-                    {% else %}
-                        {% trans "Store" %}
+		    {% else %}
+		        {{ category.name }}
 		    {% endif %}
+		        <h6 class="">
+        {% if user.is_staff %}
+            <a href="{% url 'dashboard:catalogue-category-update' pk=category.id %}"><small>{% trans "Edit this category" %}</small></a>
+        {% endif %}
+    </h6>
+                {% else %}
+                    {% trans "Store" %}
+		{% endif %}
 		    <h3>
             </button>
           <!-- Modal -->

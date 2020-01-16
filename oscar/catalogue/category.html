@@ -11,12 +11,6 @@
 {% endblock %}
 
 {% block header%}
-    <div class="">
-        {% if user.is_staff %}
-            <a href="{% url 'dashboard:catalogue-category-update' pk=category.id %}"><small>{% trans "Edit this category" %}</small></a>
-        {% endif %}
-        <h1>{% block headertext %}{{ category.name }}{% endblock %}</h1>
-    </div>
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -31,12 +25,7 @@
 
 {% block content %}
     {% if category.description %}
-        <div class="row">
-            <div class="col-sm-9"><p>{{ category.description|safe }}</p></div>
-            {% if category.image %}
-                <div class="col-sm-3"><img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-thumbnail"></div>
-            {% endif %}
-        </div>
+            <div class=""><p>{{ category.description|safe }}</p></div>
     {% endif %}
     {{ block.super }}
 {% endblock %}
