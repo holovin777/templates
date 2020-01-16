@@ -4,13 +4,15 @@
 {% load image_tags %}
     {% block nav_dropdown %}
             <!-- Button trigger modal -->
-            <button type="button" class="btn text-white" data-toggle="modal" data-target="#exampleModal2">
+            <button type="button btn-lg" class="btn text-white" data-toggle="modal" data-target="#exampleModal2">
+		    <h3>
 		    {% if category.image %}
-		        {% oscar_thumbnail category.image "32x32" crop="center" as thumb %}
+		        {% oscar_thumbnail category.image "42x42" crop="center" as thumb %}
 			<img src="{{ thumb.url }}" alt="{{ category.name }}" class="rounded"> {{ category.name }}
                     {% else %}
                         {% trans "Store" %}
 		    {% endif %}
+		    <h3>
             </button>
           <!-- Modal -->
           <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
