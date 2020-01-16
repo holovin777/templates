@@ -23,7 +23,9 @@
     {% block content_wrapper %}
         <div class="container-fluid">
             <div class="">
+	      <nav aria-label="breadcrumb">
                 {% block breadcrumbs %}{% endblock %}
+	      </nav>
                 {% block header %}
                     <div class="">
                         <h1>{% block headertext %}{% endblock %}</h1>
@@ -43,9 +45,7 @@
     {% include "oscar/partials/footer.html" %}
 {% endblock %}
 
-{#
 {% block onbodyload %}
     {{ block.super }}
     oscar.init();
 {% endblock %}
-#}
