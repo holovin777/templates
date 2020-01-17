@@ -26,18 +26,18 @@
           <!-- Modal -->
           <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content bg-dark">
+                <div class="modal-content bg-dark border">
                     <div class="modal-header">
 			    <h5 class="modal-title" id="exampleModalLabel2">{% trans "Browse store" %}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div class="modal-body border-white" style="background-color: #000000;">
                     <div class="container">
-			<br>
                         {% include "oscar/partials/search.html" %}
                     </div>
-                    <div class="modal-body">
+			<br>
                         {% category_tree as tree_categories %}
                         {% if tree_categories %}
                             <h6 class="text-left">{% trans "Show results for" %}</h6>
@@ -90,7 +90,7 @@
 			        {% endblock %}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">{% trans "Close" %}</button>
                     </div>
                 </div>
             </div>
