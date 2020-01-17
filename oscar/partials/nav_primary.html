@@ -26,14 +26,14 @@
           <!-- Modal -->
           <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content bg-dark border">
-                    <div class="modal-header">
+                <div class="modal-content bg-dark border-dark">
+                    <div class="modal-header border-dark">
 			    <h5 class="modal-title" id="exampleModalLabel2">{% trans "Browse store" %}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body border-white" style="background-color: #000000;">
+                    <div class="modal-body" style="background-color: #000000;">
                     <div class="container">
                         {% include "oscar/partials/search.html" %}
                     </div>
@@ -89,7 +89,7 @@
                                     {% endif %}
 			        {% endblock %}
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-dark">
                         <button type="button" class="btn btn-outline-light" data-dismiss="modal">{% trans "Close" %}</button>
                     </div>
                 </div>
