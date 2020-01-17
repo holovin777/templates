@@ -2,9 +2,6 @@
 {% load staticfiles %}
 
 {% block layout %}
-    {# Top-horizontal bar with account, notifictions, dashboard links #}
-    {% include "oscar/partials/nav_accounts.html" %}
-
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -12,7 +9,7 @@
         </nav>
     </div>
     <div>
-	    <div class="container text-center">
+	    <div class="container-fluid">
             {% block navigation %}
                 {% include "oscar/partials/nav_primary.html" %}
             {% endblock %}
