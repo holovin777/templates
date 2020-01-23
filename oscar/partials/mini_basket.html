@@ -1,7 +1,7 @@
 {% load currency_filters %}
 {% load i18n %}
 <div class="text-right">
-<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal1">
+<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#mini_basketModal1">
     <strong>{% trans "Basket total:" %}</strong>
     {% if request.basket.is_tax_known %}
         {{ request.basket.total_incl_tax|currency:request.basket.currency }}
@@ -10,11 +10,11 @@
     {% endif %}
 </button>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+<div class="modal fade" id="mini_basketModal1" tabindex="-1" role="dialog" aria-labelledby="mini_basketModalLabel1" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content bg-dark">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1">{% trans "Basket" %}</h5>
+        <h5 class="modal-title" id="mini_basketModalLabel1">{% trans "Basket" %}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
