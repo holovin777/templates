@@ -6,12 +6,12 @@
 
     {% if all_images|length > 1 %}
 
-<div id="carousel" class="carousel slide" data-ride="carousel">
+<div id="carousel" class="text-center carousel slide" data-ride="carousel">
   <div class="carousel-inner">
 	    {% for image in all_images %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-			    {% oscar_thumbnail image.original "480x600" crop="center" as thumb %}
-                        <img src="{{ thumb.url }}" class="d-block w-100 rounded" alt="{{ product.get_title }}">
+			    {% oscar_thumbnail image.original "x600" crop="center" as thumb %}
+                        <img src="{{ thumb.url }}" class="rounded" height="640" alt="{{ product.get_title }}">
                     </div>
             {% endfor %}
  </div>
