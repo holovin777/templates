@@ -1,5 +1,6 @@
 {% extends "oscar/base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block layout %}
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
@@ -19,7 +20,7 @@
         <a class="nav-link btn" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link btn" href="/">Store </a>
+        <a class="nav-link btn" href="/">{% trans "Browse store" %} </a>
       </li>
       <li class="nav-item">
               <a class="nav-link btn" data-toggle="modal" data-target="#aboutModal">About</a>
