@@ -11,7 +11,7 @@
 	    {% for image in all_images %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
 			    {% oscar_thumbnail image.original "x600" crop="center" as thumb %}
-                        <img src="{{ thumb.url }}" class="rounded" height="600" alt="{{ product.get_title }}">
+                        <img src="{{ thumb.url }}" class="rounded" height="480" alt="{{ product.get_title }}">
                     </div>
             {% endfor %}
  </div>
