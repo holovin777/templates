@@ -4,7 +4,7 @@
 {% load image_tags %}
     {% block nav_dropdown %}
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-lg btn-block border-dark text-white" data-toggle="modal" data-target="#exampleModal2">
+            <button type="button" class="btn btn-lg btn-block border-primary text-white" data-toggle="modal" data-target="#exampleModal2">
 	        {% if category %}
 		    {% if category.image %}
 		        {% oscar_thumbnail category.image "64x64" crop="center" as thumb %}
@@ -18,7 +18,7 @@
                             {% endif %}
                         </h6>
                     {% else %}
-                        {% trans "Store" %}
+                        {% trans "Browse store" %}
 		{% endif %}
             </button>
           <!-- Modal -->
