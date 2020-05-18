@@ -41,7 +41,21 @@
     <div class="text-center">
       <a href="/" type="button" class="btn btn-outline-primary">{% trans "Browse store" %} </a>
     </div>
-
+    <br>
+    {% if posts %}
+      {% for post in posts %}
+        <div class="card text-center text-white bg-dark">
+	  <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
+	    {% if post.description %}<p class="card-text">{{ post.description }}</p>{% endif %}
+          </div>
+          <div class="card-footer text-muted">
+            {{ post.published_date }}
+          </div>
+        </div>
+        <br>
+      {% endfor %}
+    {% endif %}
     {# Main content of page - other layout templates may override this block #}
     {% include "oscar/partials/footer.html" %}
 {% endblock %}
