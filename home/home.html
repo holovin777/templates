@@ -44,12 +44,12 @@
     <br>
     {% if posts %}
       {% for post in posts %}
-        <div class="container card text-center text-white bg-dark">
-	  <div class="card-body">
+        <div class="container card border-light text-center text-white bg-transparent">
+	  <div class="card-body border-light">
             <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
 	    {% if post.description %}<p class="card-text">{{ post.description }}</p>{% endif %}
           </div>
-          <div class="card-footer text-muted">
+          <div class="card-footer text-muted border-light">
             {{ post.published_date }}
           </div>
         </div>
