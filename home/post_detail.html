@@ -1,16 +1,8 @@
-{% extends "oscar/base.html" %}
+{% extends "oscar/layout.html" %}
 {% load staticfiles %}
 {% load i18n %}
 
-{% block layout %}
-    {# Site logo/title, mini-basket, browse dropdown and searchbox #}
-    <div class="">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            {% include "oscar/partials/brand.html" with active='/home' %}
-        </nav>
-    </div>
-    <br>
-
+{% block content %}
     <div class="container post">
         <h1 class="text-center">{{ post.title }}</h1>
 	<p class="text-center">{{ post.description }}</p>
@@ -22,8 +14,6 @@
         {% endif %}
     </div>
 
-    {# Main content of page - other layout templates may override this block #}
-    {% include "oscar/partials/footer.html" %}
 {% endblock %}
 
 {% block onbodyload %}

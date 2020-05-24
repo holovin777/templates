@@ -1,7 +1,9 @@
 {% extends "oscar/layout.html" %}
 {% load staticfiles %}
 {% load i18n %}
-
+{% block extrastyles %}
+<link rel="stylesheet" type="text/css" href="{% static "css/postliststyles.css" %}" />
+{% endblock %}
 {% block content %}
     {% if images %}
     <div id="homeCarousel" class="carousel slide" data-ride="carousel">
@@ -14,29 +16,26 @@
       </div>
     </div>
     {% endif %}
-    <br>
-    <br>
+    </br>
+
     {% if posts %}
+<div class="content-wrapper">
       {% for post in posts %}
-<div id="myDiv" class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      {% if post.image_url or post.image_file.url %}
-                  <img class="flip-img" src="{% if post.image_url %}{{ post.image_url }}{% else %}{{ post.image_file.url }}{% endif %}" alt="image" style="max-height:198px;">
-      {% endif %}
-    </div>
-    <div class="flip-card-back">
-        <a class="" href="{% url 'post_detail' pk=post.pk %}">
-      <h1>{{ post.title }}</h1>
-      {% if post.description %}<p class="card-text">{{ post.description }}</p>{% endif %}
-      <p class="card-text"><small class="text-muted">{{ post.published_date }}</small></p>
-	</a>
+  <div class="news-card">
+    <a href="{% url 'post_detail' pk=post.pk %}" class="news-card__card-link"></a>
+    <img src="{% if post.image_url %}{{ post.image_url }}{% else %}{{ post.image_file.url }}{% endif %}" alt="" class="news-card__image">
+    <div class="news-card__text-wrapper">
+      <h2 class="news-card__title">{{ post.title }}</h2>
+      <div class="news-card__post-date">{{ post.published_date }}</div>
+      <div class="news-card__details-wrapper">
+        <p class="news-card__excerpt">{{ post.description }}</p>
+      </div>
     </div>
   </div>
-</div>
-</br>
       {% endfor %}
+</div>
     {% endif %}
+
 {% endblock %}
 
 {% block onbodyload %}
