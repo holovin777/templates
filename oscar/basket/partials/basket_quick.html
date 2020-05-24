@@ -5,13 +5,13 @@
 {% load i18n %}
 {% load staticfiles %}
 
-<ul class="">
+<ul class="basket-mini-item list-unstyled">
     {% if request.basket.num_lines %}
         {% for line in request.basket.all_lines %}
             <li>
                 <div class="row">
                     <div class="col-sm-3">
-                        <div class="">
+                        <div class="image_container">
                             {% with image=line.product.primary_image %}
                                 {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
                                 <a href="{{ line.product.get_absolute_url }}">

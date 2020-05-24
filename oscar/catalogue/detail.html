@@ -18,24 +18,28 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-<ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
+<ul class="breadcrumb">
+    <li>
+        <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+    </li>
     {% with category=product.categories.all.0 %}
         {% for c in category.get_ancestors_and_self %}
-        <li class="breadcrumb-item"><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+        <li>
+            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
         {% endfor %}
-        <li class="breadcrumb-item active" aria-current="page">{{ product.get_title }}</li>
+        <li class="active">{{ product.get_title }}</li>
 
         {% get_back_button as backbutton %}
         {% if backbutton %}
-            <li class="">
+            <li class="pull-right">
                 <a href="{{ backbutton.url }}">
-                    {{ backbutton.title }}
+                    <i class="icon-arrow-left"></i> {{ backbutton.title }}
                 </a>
             </li>
         {% endif %}
     {% endwith %}
-</ol>
+</ul>
 {% endblock %}
 
 {% block header %}
@@ -43,7 +47,7 @@
 
 {% block content %}
 
-<div class=""><!-- Start of product page -->
+<article class="product_page"><!-- Start of product page -->
 
     <div class="row">
 
@@ -54,13 +58,13 @@
         {% endblock %}
 
         {% block product_main %}
-        <div class="col-sm-6">
+        <div class="col-sm-6 product_main">
             {% comment %}
             This is a but clunky here.  Better to have some kind of JS-driven dashboard menu that
             pops out when clicked.  A bit like the Django-Debug-Toolbar button
             {% endcomment %}
             {% if user.is_staff %}
-                <a href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small>{% trans "Edit this product" %}</small></a>
+                <a class="pull-right hidden-xs" href="{% url 'dashboard:catalogue-product' pk=product.id %}"><small><i class="icon-edit"></i> {% trans "Edit this product" %}</small></a>
             {% endif %}
             <h1>{{ product.get_title }}</h1>
 

@@ -11,21 +11,36 @@
 {% endblock %}
 
 {% block header%}
+    <div class="page-header action">
+        {% if user.is_staff %}
+            <a class="pull-right hidden-xs" href="{% url 'dashboard:catalogue-category-update' pk=category.id %}"><small><i class="icon-edit"></i> {% trans "Edit this category" %}</small></a>
+        {% endif %}
+        <h1>{% block headertext %}{{ category.name }}{% endblock %}</h1>
+    </div>
 {% endblock %}
 
 {% block breadcrumbs %}
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
+        </li>
         {% for category in category.get_ancestors %}
-            <li class="breadcrumb-item"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+            <li>
+                <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            </li>
         {% endfor %}
-        <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
-    </ol>
+        <li class="active">{{ category.name }}</li>
+    </ul>
 {% endblock breadcrumbs %}
 
 {% block content %}
     {% if category.description %}
-            <div class=""><p>{{ category.description|safe }}</p></div>
+        <div class="row">
+            <div class="col-sm-9"><p>{{ category.description|safe }}</p></div>
+            {% if category.image %}
+                <div class="col-sm-3"><img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-responsive" /></div>
+            {% endif %}
+        </div>
     {% endif %}
     {{ block.super }}
 {% endblock %}
