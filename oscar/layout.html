@@ -10,9 +10,9 @@
     {% if use_less %}
         <link rel="stylesheet/less" type="text/css" href="{% static "oscar/less/styles.less" %}" />
     {% else %}
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static "oscar/css/styles.css" %}" />
 	<link rel="stylesheet" type="text/css" href="{% static "css/hstyles.css" %}" />
-	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
     {% endif %}
 {% endblock %}
 
