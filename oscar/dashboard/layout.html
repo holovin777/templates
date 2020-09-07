@@ -123,7 +123,7 @@
 
 {% block cdn_scripts %}
   {{ block.super }}
-  {% if use_less and debug %}
+  {% if use_less %}
     {# Load the on-the-fly less compiler. Never do this in production. #}
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
   {% endif %}
